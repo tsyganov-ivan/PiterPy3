@@ -1,0 +1,181 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> task
+Rule 1     task -> with in rule_list
+Rule 2     task -> in rule_list
+Rule 3     with -> WITH VALUE
+Rule 4     in -> IN VALUE
+Rule 5     rule_list -> rule_list rule
+Rule 6     rule_list -> rule
+Rule 7     rule -> SET ATTRIBUTE EQUALS VALUE
+
+Terminals, with rules where they appear
+
+ATTRIBUTE            : 7
+EQUALS               : 7
+IN                   : 4
+SET                  : 7
+VALUE                : 3 4 7
+WITH                 : 3
+error                : 
+
+Nonterminals, with rules where they appear
+
+in                   : 1 2
+rule                 : 5 6
+rule_list            : 1 2 5
+task                 : 0
+with                 : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . task
+    (1) task -> . with in rule_list
+    (2) task -> . in rule_list
+    (3) with -> . WITH VALUE
+    (4) in -> . IN VALUE
+
+    WITH            shift and go to state 3
+    IN              shift and go to state 4
+
+    with                           shift and go to state 2
+    in                             shift and go to state 1
+    task                           shift and go to state 5
+
+state 1
+
+    (2) task -> in . rule_list
+    (5) rule_list -> . rule_list rule
+    (6) rule_list -> . rule
+    (7) rule -> . SET ATTRIBUTE EQUALS VALUE
+
+    SET             shift and go to state 7
+
+    rule_list                      shift and go to state 8
+    rule                           shift and go to state 6
+
+state 2
+
+    (1) task -> with . in rule_list
+    (4) in -> . IN VALUE
+
+    IN              shift and go to state 4
+
+    in                             shift and go to state 9
+
+state 3
+
+    (3) with -> WITH . VALUE
+
+    VALUE           shift and go to state 10
+
+
+state 4
+
+    (4) in -> IN . VALUE
+
+    VALUE           shift and go to state 11
+
+
+state 5
+
+    (0) S' -> task .
+
+
+
+state 6
+
+    (6) rule_list -> rule .
+
+    SET             reduce using rule 6 (rule_list -> rule .)
+    $end            reduce using rule 6 (rule_list -> rule .)
+
+
+state 7
+
+    (7) rule -> SET . ATTRIBUTE EQUALS VALUE
+
+    ATTRIBUTE       shift and go to state 12
+
+
+state 8
+
+    (2) task -> in rule_list .
+    (5) rule_list -> rule_list . rule
+    (7) rule -> . SET ATTRIBUTE EQUALS VALUE
+
+    $end            reduce using rule 2 (task -> in rule_list .)
+    SET             shift and go to state 7
+
+    rule                           shift and go to state 13
+
+state 9
+
+    (1) task -> with in . rule_list
+    (5) rule_list -> . rule_list rule
+    (6) rule_list -> . rule
+    (7) rule -> . SET ATTRIBUTE EQUALS VALUE
+
+    SET             shift and go to state 7
+
+    rule_list                      shift and go to state 14
+    rule                           shift and go to state 6
+
+state 10
+
+    (3) with -> WITH VALUE .
+
+    IN              reduce using rule 3 (with -> WITH VALUE .)
+
+
+state 11
+
+    (4) in -> IN VALUE .
+
+    SET             reduce using rule 4 (in -> IN VALUE .)
+
+
+state 12
+
+    (7) rule -> SET ATTRIBUTE . EQUALS VALUE
+
+    EQUALS          shift and go to state 15
+
+
+state 13
+
+    (5) rule_list -> rule_list rule .
+
+    SET             reduce using rule 5 (rule_list -> rule_list rule .)
+    $end            reduce using rule 5 (rule_list -> rule_list rule .)
+
+
+state 14
+
+    (1) task -> with in rule_list .
+    (5) rule_list -> rule_list . rule
+    (7) rule -> . SET ATTRIBUTE EQUALS VALUE
+
+    $end            reduce using rule 1 (task -> with in rule_list .)
+    SET             shift and go to state 7
+
+    rule                           shift and go to state 13
+
+state 15
+
+    (7) rule -> SET ATTRIBUTE EQUALS . VALUE
+
+    VALUE           shift and go to state 16
+
+
+state 16
+
+    (7) rule -> SET ATTRIBUTE EQUALS VALUE .
+
+    SET             reduce using rule 7 (rule -> SET ATTRIBUTE EQUALS VALUE .)
+    $end            reduce using rule 7 (rule -> SET ATTRIBUTE EQUALS VALUE .)
+
